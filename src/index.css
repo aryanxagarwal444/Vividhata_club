@@ -1,0 +1,162 @@
+@import "tailwindcss";
+
+a, 
+button, 
+[role="button"], 
+input[type="submit"], 
+input[type="button"], 
+.cursor-pointer {
+  cursor: pointer;
+}
+
+@layer utilities {
+  /* Laser Scanner Line Animation */
+  @keyframes scanline {
+    0% {
+      top: 5%;
+      opacity: 0.8;
+    }
+    50% {
+      top: 90%;
+      opacity: 1;
+    }
+    100% {
+      top: 5%;
+      opacity: 0.8;
+    }
+  }
+
+  /* Shimmer Loading Skeleton */
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  /* Pulse Glow for Live Status */
+  @keyframes statusGlow {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.6;
+      transform: scale(1.15);
+    }
+  }
+
+  @keyframes progress {
+    from {
+      width: 0%;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
+  .animate-scanline {
+    animation: scanline 2.2s ease-in-out infinite;
+  }
+
+  /* Pulse Glow for Live Status */
+  @keyframes scanPulse {
+    0%, 100% {
+      box-shadow: 0 0 15px rgba(99, 102, 241, 0.3), inset 0 0 15px rgba(99, 102, 241, 0.15);
+    }
+    50% {
+      box-shadow: 0 0 30px rgba(99, 102, 241, 0.6), inset 0 0 25px rgba(99, 102, 241, 0.25);
+    }
+  }
+
+  .animate-scanner-reticle {
+    animation: scanPulse 3s ease-in-out infinite;
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  .animate-status-glow {
+    animation: statusGlow 2s infinite;
+  }
+
+  /* Ticket Notch Cutout */
+  .ticket-notch-left {
+    position: absolute;
+    left: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    background-color: #f8fafc;
+    border-radius: 50%;
+    border-right: 1px solid #e2e8f0;
+  }
+
+  .ticket-notch-right {
+    position: absolute;
+    right: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    background-color: #f8fafc;
+    border-radius: 50%;
+    border-left: 1px solid #e2e8f0;
+  }
+
+  /* HTML5-QRCode Scanner Single Frame Styling - Strictly One Video Frame in Native Ratio */
+  #qr-shaded-region,
+  #qr-canvas-visible,
+  #html5-qrcode-anchor-scan-type-change {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  #self-checkin-camera-viewport,
+  #qr-reader-viewport,
+  #html5qr-code-full-region,
+  div[id*="camera-viewport"],
+  div[id*="qr-reader"] {
+    border: none !important;
+    background: transparent !important;
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+  }
+
+  /* Hide any canvas or extra elements, keeping ONLY the single live video stream */
+  #self-checkin-camera-viewport > canvas,
+  #qr-reader-viewport > canvas,
+  div[id*="camera-viewport"] > canvas,
+  div[id*="qr-reader"] > canvas,
+  #self-checkin-camera-viewport > div:not([id*="video"]),
+  #qr-reader-viewport > div:not([id*="video"]) {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  /* Single Camera Video Element rendered in natural capture ratio */
+  #html5qr-code-full-region video,
+  #qr-reader-viewport video,
+  #self-checkin-camera-viewport video,
+  div[id*="camera-viewport"] video,
+  div[id*="qr-reader"] video {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 400px !important;
+    object-fit: contain !important;
+    border-radius: 0.75rem !important;
+    display: block !important;
+    margin: 0 auto !important;
+  }
+}

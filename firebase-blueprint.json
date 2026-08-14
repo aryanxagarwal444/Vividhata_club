@@ -1,0 +1,44 @@
+{
+  "entities": {
+    "participant": {
+      "title": "Participant",
+      "description": "Registered event attendee",
+      "type": "object",
+      "properties": {
+        "participantId": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "college": { "type": "string" },
+        "department": { "type": "string" },
+        "year": { "type": "string" },
+        "qrToken": { "type": "string" },
+        "registeredAt": { "type": "string", "format": "date-time" },
+        "attendanceStatus": { "type": "string", "enum": ["not_attended", "attended"] },
+        "checkedInAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["participantId", "name", "email", "phone", "college", "department", "qrToken", "attendanceStatus"]
+    },
+    "checkInLog": {
+      "title": "Check-In Log",
+      "description": "Realtime record of participant check-ins",
+      "type": "object",
+      "properties": {
+        "participantId": { "type": "string" },
+        "participantName": { "type": "string" },
+        "college": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      }
+    }
+  },
+  "firestore": {
+    "/participants/{participantId}": {
+      "schema": "participant",
+      "description": "Collection of event participant registrations"
+    },
+    "/checkInLogs/{logId}": {
+      "schema": "checkInLog",
+      "description": "Collection of check-in activity logs"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "Remix Event Registration \u0026 QR Attendance System",
+  "description": "Rostr event registration and attendance system with QR badge passes, live camera scan, biometric Face ID verification, atomic duplicate prevention, and real-time Firestore sync.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

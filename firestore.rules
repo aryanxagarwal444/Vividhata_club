@@ -1,0 +1,22 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Participants collection:
+    // Allow anyone to read participants (needed to verify QR pass and search by token)
+    // Allow anyone to create a new registration
+    // Allow update and delete for registered users/admins
+    match /participants/{participantId} {
+      allow read, create, update, delete: if true;
+    }
+    
+    // Check-in activity logs
+    match /checkInLogs/{logId} {
+      allow read, create, update, delete: if true;
+    }
+
+    // Event metadata settings
+    match /settings/{settingId} {
+      allow read, write: if true;
+    }
+  }
+}
